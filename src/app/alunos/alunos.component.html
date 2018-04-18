@@ -1,0 +1,82 @@
+<p *ngIf="mensagem">
+    <ngb-alert [type]="type" (close)="closeAlert()">{{ mensagem }}</ngb-alert>
+</p>
+
+<button type="button" class="btn btn-primary" (click)="abrirModalIncluir(AlunosEditar)">
+    <i fa [name]="'plus'"></i>  Incluir  
+</button>
+
+<listaComponent listaObjetos="lista">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>E-mail</th>
+      <th>Dt. Nasc</th>
+      <th>Operações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of lista">
+      <td>{{item.Nome}}</td>
+      <td>{{item.CPF}}</td>
+      <td>{{item.Email}}</td>
+      <td>{{item.DT_Nascimento | date: 'dd/MM/yyyy'}}</td>
+      <td>
+        <button class="btn btn-success" title="Editar" (click)="abrirModalEditar(item, AlunosEditar)">
+          <i fa [name]="'edit'"></i>
+        </button>
+
+        <button class="btn btn-danger" title="Excluir"
+              (click)="abrirModalExcluir(item, exluirmodal)" >
+          <i fa [name]="'trash'"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</listaComponent>
+
+<ng-template #AlunosEditar let-c="close" let-d="dismiss">
+  <modal-editar (AcaoFechar)="c('Close click')" (AcaoSalvar)="salvar()" Titulo="Aluno">
+    <div class="form-group">
+      <label>Nome</label>
+      <input (input)="modalEdicao.Nome = $event.target.value" name="txtNome" class="form-control" value="{{modalEdicao.Nome}}">
+    </div>
+    <div class="form-group">
+      <label>CPF</label>
+      <input (input)="modalEdicao.CPF = $event.target.value" name="txtCPF" class="form-control" value="{{modalEdicao.CPF}}">
+    </div>
+    <div class="form-group">
+      <label>Dt. Nasc</label>
+      <div class="input-group">
+        <input [(ngModel)]="modalEdicao.DT_Nascimento" class="form-control" value="{{modalEdicao.DT_Nascimento | date: 'dd/MM/yyyy'}}"
+          ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+            <i fa [name]="'calendar'"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>E-mail</label>
+      <input (input)="modalEdicao.Email = $event.target.value" name="txtEmail" class="form-control" value="{{modalEdicao.Email}}">
+    </div>
+  </modal-editar>
+</ng-template>
+
+<ng-template #exluirmodal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Excluir</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Deseja excluir o aluno {{modalEdicao.Nome}}?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-defalt" (click)="c('Close click')">Fechar</button>
+      <button type="button" class="btn btn-danger" (click)="excluir(modalEdicao.id)">Deletar</button>
+    </div>
+  </ng-template>

@@ -1,0 +1,6 @@
+<div class="card" style="margin-top: 10px;">
+    <p *ngIf="!listaObjetos"><em>Carregando...</em></p>
+    <table class='table table-striped table-hover table-responsive-md btn-table' *ngIf="listaObjetos">
+        <ng-content></ng-content>
+    </table>
+  </div>
