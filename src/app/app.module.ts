@@ -21,6 +21,9 @@ import { FormsModule } from '@angular/forms';
 import { NgbDateNativeAdapter } from './Providers/NgbDateNativeAdapter';
 import { HeadersToken } from './Auth/header.token';
 import { HomeComponent } from './home/home.component';
+import { ValidaLogin } from './Auth/validaLogin';
+import { LoginComponent } from './login/login.component';
+import { LoginServico } from './Servicos/loginServico';
 
 
 
@@ -28,15 +31,17 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     AlunosComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: 'alunos', component: AlunosComponent },
-      { path: 'api', component: HomeComponent }
+      { path: 'alunos', component: AlunosComponent, canActivate: [ValidaLogin] },
+      { path: 'api', component: HomeComponent },
+      { path: 'login', component: LoginComponent }
     ]),
     NgbModule.forRoot(),
     Angular2FontawesomeModule,
@@ -46,7 +51,7 @@ import { HomeComponent } from './home/home.component';
     MenuModule
   ],
   providers: [
-    AlunosServico, HeadersToken,
+    AlunosServico, HeadersToken, ValidaLogin, LoginServico,
     { provide: 'BASE_URL', useFactory: getBaseUrl },
     {provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}
   ],
@@ -55,5 +60,5 @@ import { HomeComponent } from './home/home.component';
 export class AppModule { }
 
 export function getBaseUrl() {
-  return 'http://localhost:63790/';
+  return 'http://localhost:63440/';
 }
