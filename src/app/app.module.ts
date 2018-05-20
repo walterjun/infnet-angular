@@ -8,10 +8,14 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 import { AlunosComponent } from './alunos/alunos.component';
+import { TurmaComponent } from './views/turma/turma.component';
 import { MenuModule } from './component/menu/menu.module';
-
-import { AlunosServico } from './Servicos/alunosServico';
+import { ModuloComponent } from './views/modulo/modulo.component';
+import { BlocoComponent } from './views/bloco/bloco.component';
+import { CursoComponent } from './views/curso/curso.component';
+import { ProfessorComponent } from './views/professor/professor.component';
 
 import { ListaModule } from './component/lista/lista.module';
 import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
@@ -22,17 +26,21 @@ import { NgbDateNativeAdapter } from './Providers/NgbDateNativeAdapter';
 import { HeadersToken } from './Auth/header.token';
 import { HomeComponent } from './home/home.component';
 import { ValidaLogin } from './Auth/validaLogin';
-import { LoginComponent } from './login/login.component';
+
+import { AlunosServico } from './Servicos/alunosServico';
+import { TurmaServico } from './Servicos/turmaServico';
 import { LoginServico } from './Servicos/loginServico';
+import { ModuloServico } from './Servicos/moduloServico';
+import { BlocoServico } from './Servicos/blocoServico';
+import { CursoServico } from './Servicos/cursoServico';
+import { ProfessorServico } from './Servicos/professorServico';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AlunosComponent,
-    HomeComponent,
-    LoginComponent
+    AppComponent, AlunosComponent, HomeComponent, LoginComponent,
+    TurmaComponent, ModuloComponent, BlocoComponent, CursoComponent, ProfessorComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,12 @@ import { LoginServico } from './Servicos/loginServico';
     RouterModule.forRoot([
       { path: 'alunos', component: AlunosComponent, canActivate: [ValidaLogin] },
       { path: 'api', component: HomeComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'turma', component: TurmaComponent, canActivate: [ValidaLogin] },
+      { path: 'modulo', component: ModuloComponent, canActivate: [ValidaLogin] },
+      { path: 'bloco', component: BlocoComponent, canActivate: [ValidaLogin] },
+      { path: 'curso', component: CursoComponent, canActivate: [ValidaLogin] }
+      { path: 'professor', component: ProfessorComponent, canActivate: [ValidaLogin] }
     ]),
     NgbModule.forRoot(),
     Angular2FontawesomeModule,
@@ -51,8 +64,10 @@ import { LoginServico } from './Servicos/loginServico';
     MenuModule
   ],
   providers: [
-    AlunosServico, HeadersToken, ValidaLogin, LoginServico,
+    AlunosServico, HeadersToken, ValidaLogin, LoginServico, TurmaServico,
+    ModuloServico, BlocoServico, CursoServico, ProfessorServico,
     { provide: 'BASE_URL', useFactory: getBaseUrl },
+    { provide: 'AUTH_URL', useFactory: getAuthUrl },
     {provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}
   ],
   bootstrap: [AppComponent]
@@ -60,5 +75,9 @@ import { LoginServico } from './Servicos/loginServico';
 export class AppModule { }
 
 export function getBaseUrl() {
+  return 'http://localhost:63790/';
+}
+
+export function getAuthUrl() {
   return 'http://localhost:63440/';
 }

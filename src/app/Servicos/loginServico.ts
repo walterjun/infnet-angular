@@ -11,7 +11,7 @@ export class LoginServico {
     headers: Headers;
     public usuarioLogin: Login = new Login();
 
-    constructor(private http: Http, @Inject('BASE_URL') baseUrl: string,
+    constructor(private http: Http, @Inject('AUTH_URL') baseUrl: string,
                                     private headerToken: HeadersToken,
                                     private router: Router)
     {
