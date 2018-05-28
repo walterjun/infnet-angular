@@ -15,6 +15,8 @@ const now = new Date();
 export class CursoComponent extends BaseTelas implements OnInit {
 
     public lista: Curso;
+    naoAssociados = [];
+    associados = [];
 
   constructor(modalService: NgbModal, 
               private servico: CursoServico) {
@@ -59,5 +61,25 @@ export class CursoComponent extends BaseTelas implements OnInit {
        }
     );
     this.windowsExcluir.close();
+  }
+
+  abrirAssociacao(item, TelaAssociacao){
+    this.naoAssociados = [ 
+      {value: 1, name: "one"}, 
+      {value: 2, name: "two"},
+      {value: 3, name: "three"},
+      {value: 4, name: "four"}];
+
+      this.associados = [ 
+        {value: 1, name: "one"}, 
+        {value: 2, name: "two"},
+        {value: 3, name: "three"},
+        {value: 4, name: "four"}];
+
+        this.abrirModalEditar(item, TelaAssociacao);
+  }
+
+  salvarAssociacao(listaa){
+    console.log(listaa);
   }
 }

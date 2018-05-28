@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{Titulo}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="FecharModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="alinhamento">
+        <select #select multiple (change)="selecaoEsquerda($event.target.options)">
+            <option *ngFor="let item of naoAssociados" [value]="item.value">
+                {{item.name}}
+            </option>
+        </select>
+    </div>
+    <div class="alinhamento">
+        <button type="button" class="btn btn-primary" (click)="associar()">Associar</button>
+        <button type="button" class="btn btn-primary" (click)="desassociar()">Desassociar</button>
+    </div>
+    <div class="alinhamento">
+        <select #select multiple (change)="selecaoDireita($event.target.options)">
+            <option *ngFor="let item of associados" [value]="item.value">
+                {{item.name}}
+            </option>
+        </select>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-defalt" (click)="FecharModal()">Fechar</button>
+    <button type="button" class="btn btn-primary" (click)="salvarAssociacao(associados)">Salvar</button>
+</div>

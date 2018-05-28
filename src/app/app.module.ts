@@ -34,13 +34,15 @@ import { ModuloServico } from './Servicos/moduloServico';
 import { BlocoServico } from './Servicos/blocoServico';
 import { CursoServico } from './Servicos/cursoServico';
 import { ProfessorServico } from './Servicos/professorServico';
+import { AssociacaoComponent } from './component/associacao/associacao.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent, AlunosComponent, HomeComponent, LoginComponent,
-    TurmaComponent, ModuloComponent, BlocoComponent, CursoComponent, ProfessorComponent
+    TurmaComponent, ModuloComponent, BlocoComponent, CursoComponent, ProfessorComponent,
+    AssociacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,7 @@ import { ProfessorServico } from './Servicos/professorServico';
       { path: 'turma', component: TurmaComponent, canActivate: [ValidaLogin] },
       { path: 'modulo', component: ModuloComponent, canActivate: [ValidaLogin] },
       { path: 'bloco', component: BlocoComponent, canActivate: [ValidaLogin] },
-      { path: 'curso', component: CursoComponent, canActivate: [ValidaLogin] }
+      { path: 'curso', component: CursoComponent, canActivate: [ValidaLogin] },
       { path: 'professor', component: ProfessorComponent, canActivate: [ValidaLogin] }
     ]),
     NgbModule.forRoot(),

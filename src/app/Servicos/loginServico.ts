@@ -1,9 +1,8 @@
 import { Injectable, Inject, Input } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
-import { HeadersToken } from '../Auth/header.token';
 
 @Injectable()
 export class LoginServico {
@@ -12,13 +11,12 @@ export class LoginServico {
     public usuarioLogin: Login = new Login();
 
     constructor(private http: Http, @Inject('AUTH_URL') baseUrl: string,
-                                    private headerToken: HeadersToken,
                                     private router: Router)
     {
         this.url = baseUrl;
 
         this.headers = new Headers();
-        this.headers.set('Content-Type', 'application/json; charset=utf-8');
+        this.headers.set('Content-Type', 'application/x-www-form-urlencoded');
     }
 
     login(usuario: Login) {
@@ -28,7 +26,7 @@ export class LoginServico {
         body.set('password', usuario.senha);
         body.set('client_id','123456');
         body.set('client_secret','abcdef');
-        return this.http.post(this.url + 'OAuth/Token', body.toString(), this.headerToken.getOptions());
+        return this.http.post(this.url + 'OAuth/Token', body.toString(), new RequestOptions({ headers: this.headers}) );
     }
 }
 

@@ -8,7 +8,7 @@ export class HeadersToken {
 
     constructor() {
         this.header = new Headers();
-        this.header.set('Content-Type', 'application/json');//x-www-form-urlencoded
+        this.header.set('Content-Type', 'application/json');//application/json
 
         // let body = new URLSearchParams();
         // this.header.set('grant_type','password');
