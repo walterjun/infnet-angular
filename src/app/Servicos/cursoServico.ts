@@ -29,4 +29,17 @@ export class CursoServico {
     excluir(id){
         return this.http.delete(this.url + '?id=' + id, this.header.getOptions());
     }
+
+    buscarBlocosAssociados(idCurso) {
+        return this.http.get(this.url + '/BuscarBlocosPorCurso?idCurso=' + idCurso);
+    }
+
+    buscarBlocosNaoAssociados(idCurso) {
+        return this.http.get(this.url + '/BuscarBlocosNaoAssociadosCurso?idCurso=' + idCurso);
+    }
+
+    atualizarBlocosDoCurso(curso){
+        console.log(curso);
+        return this.http.put(this.url + '/atualizarBlocosDoCurso', curso);
+    }
 }

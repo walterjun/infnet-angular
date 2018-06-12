@@ -7,7 +7,7 @@ import { Component, Input, EventEmitter, Output, ViewChild } from '@angular/core
 })
 export class AssociacaoComponent {
     @ViewChild('select') selectElRef;
-    @Output() start: EventEmitter<any> = new EventEmitter();
+    @Output() start: EventEmitter<any> = new EventEmitter<any>();
     @Output() AcaoFechar = new EventEmitter();
     @Output() AcaoSalvar = new EventEmitter();
     @Input() naoAssociados;
@@ -16,7 +16,7 @@ export class AssociacaoComponent {
     valoresDaEsquerda = [];
     valoresDaDireita = [];
 
-    constructor() { console.clear(); }
+    constructor() {  }
 
     ngAfterViewInit() {
         //this.updateSelectList();
@@ -28,7 +28,6 @@ export class AssociacaoComponent {
         this.valoresDaEsquerda = Array.apply(null, options)
             .filter(option => option.selected)
             .map(option => option.value);
-            console.log(this.valoresDaEsquerda);
     }
 
     selecaoDireita(options) {
@@ -59,7 +58,7 @@ export class AssociacaoComponent {
         this.AcaoFechar.emit();
     }
 
-    salvarAssociacao() {
+    salvarAssociacao(a) {
         this.AcaoSalvar.emit(this.associados);
         this.FecharModal();
     }

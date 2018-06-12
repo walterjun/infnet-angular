@@ -6,18 +6,25 @@
 </div>
 <div class="modal-body">
     <div class="alinhamento">
-        <select #select multiple (change)="selecaoEsquerda($event.target.options)">
+        <select #select multiple (change)="selecaoEsquerda($event.target.options)" class="tamanhoMinimo">
             <option *ngFor="let item of naoAssociados" [value]="item.value">
                 {{item.name}}
             </option>
         </select>
     </div>
     <div class="alinhamento">
-        <button type="button" class="btn btn-primary" (click)="associar()">Associar</button>
-        <button type="button" class="btn btn-primary" (click)="desassociar()">Desassociar</button>
+        <p>
+        <button type="button" class="btn btn-defaul" (click)="associar()">
+            <i fa [name]="'angle-right'"></i>
+        </button>
+    </p><p>
+        <button type="button" class="btn btn-defaul" (click)="desassociar()">
+            <i fa [name]="'angle-left'"></i>
+        </button>
+    </p>
     </div>
     <div class="alinhamento">
-        <select #select multiple (change)="selecaoDireita($event.target.options)">
+        <select #select multiple (change)="selecaoDireita($event.target.options)" class="tamanhoMinimo">
             <option *ngFor="let item of associados" [value]="item.value">
                 {{item.name}}
             </option>
