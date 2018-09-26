@@ -16,6 +16,8 @@ import { ModuloComponent } from './views/modulo/modulo.component';
 import { BlocoComponent } from './views/bloco/bloco.component';
 import { CursoComponent } from './views/curso/curso.component';
 import { ProfessorComponent } from './views/professor/professor.component';
+import { AssociacaoComponent } from './component/associacao/associacao.component';
+import { AvaliacaoComponent } from './views/avaliacao/avaliacao.component';
 
 import { ListaModule } from './component/lista/lista.module';
 import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
@@ -34,7 +36,7 @@ import { ModuloServico } from './Servicos/moduloServico';
 import { BlocoServico } from './Servicos/blocoServico';
 import { CursoServico } from './Servicos/cursoServico';
 import { ProfessorServico } from './Servicos/professorServico';
-import { AssociacaoComponent } from './component/associacao/associacao.component';
+import { AvaliacaoServico } from './Servicos/AvaliacaoServico';
 
 
 
@@ -42,7 +44,7 @@ import { AssociacaoComponent } from './component/associacao/associacao.component
   declarations: [
     AppComponent, AlunosComponent, HomeComponent, LoginComponent,
     TurmaComponent, ModuloComponent, BlocoComponent, CursoComponent, ProfessorComponent,
-    AssociacaoComponent
+    AssociacaoComponent, AvaliacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { AssociacaoComponent } from './component/associacao/associacao.component
       { path: 'modulo', component: ModuloComponent, canActivate: [ValidaLogin] },
       { path: 'bloco', component: BlocoComponent, canActivate: [ValidaLogin] },
       { path: 'curso', component: CursoComponent, canActivate: [ValidaLogin] },
-      { path: 'professor', component: ProfessorComponent, canActivate: [ValidaLogin] }
+      { path: 'professor', component: ProfessorComponent, canActivate: [ValidaLogin] },
+      { path: 'avaliacao', component: AvaliacaoComponent, canActivate: [ValidaLogin] }
     ]),
     NgbModule.forRoot(),
     Angular2FontawesomeModule,
@@ -67,7 +70,7 @@ import { AssociacaoComponent } from './component/associacao/associacao.component
   ],
   providers: [
     AlunosServico, HeadersToken, ValidaLogin, LoginServico, TurmaServico,
-    ModuloServico, BlocoServico, CursoServico, ProfessorServico,
+    ModuloServico, BlocoServico, CursoServico, ProfessorServico, AvaliacaoServico,
     { provide: 'BASE_URL', useFactory: getBaseUrl },
     { provide: 'AUTH_URL', useFactory: getAuthUrl },
     {provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}

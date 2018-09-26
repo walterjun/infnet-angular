@@ -19,7 +19,9 @@
         <button class="btn btn-success" title="Editar" (click)="abrirModalEditar(item, BlocoEditar)">
           <i fa [name]="'edit'"></i>
         </button>
-
+        <button class="btn btn-primary" title="Associar módulo" (click)="abrirAssociacao(item, TelaAssociacao)">
+          <i fa [name]="'bars'"></i>
+        </button>
         <button class="btn btn-danger" title="Excluir"
               (click)="abrirModalExcluir(item, exluirmodal)" >
           <i fa [name]="'trash'"></i>
@@ -52,4 +54,9 @@
       <button type="button" class="btn btn-defalt" (click)="c('Close click')">Fechar</button>
       <button type="button" class="btn btn-danger" (click)="excluir(modalEdicao.id)">Deletar</button>
     </div>
+  </ng-template>
+
+  <ng-template #TelaAssociacao let-c="close" let-d="dismiss">
+    <associacaoComponent [associados]="associados" [naoAssociados]="naoAssociados"
+    (AcaoFechar)="c('Close click')" (AcaoSalvar)="salvarAssociacao($event)"></associacaoComponent>
   </ng-template>

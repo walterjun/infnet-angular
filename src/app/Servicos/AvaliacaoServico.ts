@@ -5,13 +5,13 @@ import { Headers, RequestOptions } from '@angular/http';
 import { HeadersToken } from '../Auth/header.token';
 
 @Injectable()
-export class BlocoServico {
+export class AvaliacaoServico {
     url: string;
 
     constructor(private http: Http,
                  @Inject('BASE_URL') baseUrl: string, 
                  private header: HeadersToken) {
-        this.url = baseUrl + 'api/bloco';
+        this.url = baseUrl + 'api/Avaliacao';
     }
 
     listar() {
